@@ -2,6 +2,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
+    "cspell": "8.19.3",
     "editorconfig-checker": "6.0.1",
     "lefthook": "1.11.12",
     "syncpack": "13.0.4"
