@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "lefthook": "^1.11.12"
+    "lefthook": "1.11.12",
+    "syncpack": "13.0.4"
   },
   "engines": {
     "node": ">=22.14.0",
@@ -9,6 +10,10 @@
   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "syncpack-fix-mismatches": "syncpack fix-mismatches",
+    "syncpack-format": "syncpack format",
+    "syncpack-lint": "syncpack lint",
+    "syncpack-update": "syncpack update"
   }
 }

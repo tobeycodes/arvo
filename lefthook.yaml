@@ -6,3 +6,10 @@ pre-push:
 
     - name: validate branch name
       run: npx validate-branch-name
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: syncpack
+      run: pnpm syncpack-lint
+      glob: "package.json"
