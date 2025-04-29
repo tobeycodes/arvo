@@ -1,0 +1,20 @@
+{
+  "AllowedContentTypes": [],
+  "Debug": false,
+  "Disable": {
+    "EndOfLine": false,
+    "Indentation": false,
+    "IndentSize": false,
+    "InsertFinalNewline": false,
+    "MaxLineLength": false,
+    "TrimTrailingWhitespace": false
+  },
+  "Exclude": ["package.json", "pnpm-lock.yaml"],
+  "Format": "",
+  "IgnoreDefaults": false,
+  "NoColor": false,
+  "PassedFiles": [],
+  "SpacesAfterTabs": false,
+  "Verbose": false,
+  "Version": "v3.2.1"
+}

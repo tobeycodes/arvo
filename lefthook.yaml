@@ -13,3 +13,7 @@ pre-commit:
     - name: syncpack
       run: pnpm syncpack-lint
       glob: "package.json"
+
+    - name: editorconfig-checker
+      run: pnpm editorconfig-checker
+      glob: "*"
