@@ -10,6 +10,7 @@
   "devDependencies": {
     "@arvo/config-tailwind": "workspace:*",
     "@arvo/config-typescript": "workspace:*",
+    "@next/bundle-analyzer": "15.3.1",
     "@tailwindcss/postcss": "4.1.4",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.3.0",
@@ -27,6 +28,7 @@
   },
   "scripts": {
     "build": "next build",
+    "build:analyze": "ANALYZE=true pnpm build",
     "check-types": "tsc",
     "clean": "rm -rf .next coverage next-env.d.ts node_modules tsconfig.tsbuildinfo",
     "coverage": "vitest run --coverage",
