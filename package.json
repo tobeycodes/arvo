@@ -15,6 +15,10 @@
   },
   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
   "scripts": {
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "clean": "turbo clean && rm -rf .turbo node_modules",
+    "dev": "turbo dev",
     "editorconfig-checker": "editorconfig-checker",
     "lint": "biome check --error-on-warnings",
     "preinstall": "npx only-allow pnpm",
@@ -22,6 +26,7 @@
     "syncpack-fix-mismatches": "syncpack fix-mismatches",
     "syncpack-format": "syncpack format",
     "syncpack-lint": "syncpack lint",
-    "syncpack-update": "syncpack update"
+    "syncpack-update": "syncpack update",
+    "test": "turbo test"
   }
 }
