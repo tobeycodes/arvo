@@ -28,7 +28,7 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true pnpm build",
     "check-types": "tsc",
-    "clean": "rm -rf .next next-env.d.ts node_modules tsconfig.tsbuildinfo",
+    "clean": "rm -rf .next .turbo next-env.d.ts node_modules tsconfig.tsbuildinfo",
     "dev": "next dev --turbopack",
     "start": "next start",
     "test": "vitest"

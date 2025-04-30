@@ -21,7 +21,7 @@
   "scripts": {
     "build": "turbo build",
     "check-types": "turbo check-types",
-    "clean": "turbo clean && rm -rf .turbo node_modules",
+    "clean": "turbo clean && rm -rf .next .turbo coverage node_modules",
     "coverage": "vitest run --coverage",
     "dev": "turbo dev",
     "editorconfig-checker": "editorconfig-checker",

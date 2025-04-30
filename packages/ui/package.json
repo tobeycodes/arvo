@@ -19,7 +19,7 @@
   },
   "scripts": {
     "check-types": "tsc",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "rm -rf .turbo node_modules tsconfig.tsbuildinfo",
     "test": "vitest"
   }
 }
