@@ -1,3 +1,5 @@
+import { Button } from "@arvo/ui/components/button";
+
 export default function Home() {
-  return "Hello, world!";
+  return <Button>Hello, world!</Button>;
 }

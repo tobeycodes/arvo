@@ -1,0 +1,21 @@
+{
+  "name": "@arvo/ui",
+  "version": "0.0.0",
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@arvo/config-typescript": "workspace:*",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "typescript": "5.8.3"
+  },
+  "exports": {
+    "./components/*": "./src/components/*.tsx"
+  },
+  "scripts": {
+    "check-types": "tsc",
+    "clean": "rm -rf .turbo node_modules"
+  }
+}
