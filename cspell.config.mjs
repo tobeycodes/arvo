@@ -7,6 +7,7 @@ export default {
     "next-env.d.ts",
     "tsconfig.tsbuildinfo",
     "storybook-static",
+    "coverage",
     "pnpm-lock.yaml",
   ],
   words: [

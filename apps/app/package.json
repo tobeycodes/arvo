@@ -13,6 +13,8 @@
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@vitejs/plugin-react": "4.4.1",
+    "@vitest/coverage-v8": "3.1.2",
+    "@vitest/ui": "3.1.2",
     "jsdom": "26.1.0",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4",
@@ -21,9 +23,11 @@
   "scripts": {
     "build": "next build",
     "check-types": "tsc",
-    "clean": "rm -rf .next next-env.d.ts node_modules tsconfig.tsbuildinfo",
+    "clean": "rm -rf .next coverage next-env.d.ts node_modules tsconfig.tsbuildinfo",
+    "coverage": "vitest run --coverage",
     "dev": "next dev --turbopack",
     "start": "next start",
-    "test": "vitest"
+    "test": "vitest",
+    "ui": "vitest ui"
   }
 }
