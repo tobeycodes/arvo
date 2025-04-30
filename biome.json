@@ -5,11 +5,14 @@
       "node_modules",
       ".turbo",
       ".next",
+      "storybook-static",
+      "coverage",
+      ".anchor",
+      "target",
+      "test-ledger",
       "next-env.d.ts",
       "tsconfig.tsbuildinfo",
       "pnpm-lock.yaml",
-      "storybook-static",
-      "coverage",
       "app.css"
     ]
   },
@@ -61,6 +64,17 @@
           },
           "correctness": {
             "noNodejsModules": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["packages/program/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off",
+            "noConsoleLog": "off"
           }
         }
       }

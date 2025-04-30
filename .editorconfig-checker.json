@@ -9,7 +9,13 @@
     "MaxLineLength": false,
     "TrimTrailingWhitespace": false
   },
-  "Exclude": ["package.json", "pnpm-lock.yaml", "component.hbs", "story.hbs"],
+  "Exclude": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "component.hbs",
+    "story.hbs",
+    "Cargo.lock"
+  ],
   "Format": "",
   "IgnoreDefaults": false,
   "NoColor": false,

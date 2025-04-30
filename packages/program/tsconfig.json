@@ -1,0 +1,4 @@
+{
+  "extends": "@arvo/config-typescript/solana.json",
+  "include": ["**/*.ts"]
+}
