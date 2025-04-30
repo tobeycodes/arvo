@@ -6,29 +6,15 @@ import { defineConfig } from "vitest/config";
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  plugins: [storybookTest({ configDir: path.join(dirname, ".storybook") })],
   test: {
-    workspace: [
-      {
-        extends: true,
-        plugins: [
-          storybookTest({ configDir: path.join(dirname, ".storybook") }),
-        ],
-        test: {
-          name: "storybook",
-          browser: {
-            enabled: true,
-            headless: true,
-            name: "chromium",
-            provider: "playwright",
-          },
-          setupFiles: [".storybook/vitest.setup.ts"],
-        },
-      },
-    ],
-    watch: false,
-    coverage: {
-      reporter: ["text", "json", "html"],
-      include: ["src/**/*"],
+    name: "@arvo/docs",
+    browser: {
+      enabled: true,
+      headless: true,
+      instances: [{ browser: "chromium" }],
+      provider: "playwright",
     },
+    setupFiles: [".storybook/vitest.setup.ts"],
   },
 });
