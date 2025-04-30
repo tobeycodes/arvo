@@ -6,7 +6,17 @@ export default {
     ".next",
     "next-env.d.ts",
     "tsconfig.tsbuildinfo",
+    "storybook-static",
     "pnpm-lock.yaml",
   ],
-  words: ["commitlint", "lefthook", "syncpack", "biomejs", "turbopack"],
+  words: [
+    "commitlint",
+    "lefthook",
+    "syncpack",
+    "biomejs",
+    "turbopack",
+    "queryparams",
+    "storysource",
+    "autodocs",
+  ],
 };
