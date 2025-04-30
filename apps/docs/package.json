@@ -8,6 +8,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@arvo/config-tailwind": "workspace:*",
     "@arvo/config-typescript": "workspace:*",
     "@chromatic-com/storybook": "3.2.6",
     "@storybook/addon-a11y": "8.6.12",
@@ -21,6 +22,7 @@
     "@storybook/experimental-nextjs-vite": "8.6.12",
     "@storybook/react": "8.6.12",
     "@storybook/test": "8.6.12",
+    "@tailwindcss/vite": "4.1.4",
     "@types/node": "22.15.3",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
@@ -31,6 +33,7 @@
     "storybook": "8.6.12",
     "storybook-dark-mode": "4.0.2",
     "typescript": "5.8.3",
+    "vite": "6.3.3",
     "vitest": "3.1.2"
   },
   "scripts": {
@@ -41,5 +44,6 @@
     "dev": "storybook dev -p 6006 --no-open",
     "test": "vitest",
     "ui": "vitest ui"
-  }
+  },
+  "type": "module"
 }

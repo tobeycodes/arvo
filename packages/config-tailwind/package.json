@@ -1,0 +1,13 @@
+{
+  "name": "@arvo/config-tailwind",
+  "version": "0.0.0",
+  "dependencies": {
+    "tailwindcss": "4.1.4"
+  },
+  "exports": {
+    "./app.css": "./app.css"
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules"
+  }
+}

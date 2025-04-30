@@ -1,3 +1,4 @@
+import "@arvo/config-tailwind/app.css";
 import type { ReactNode } from "react";
 
 export default function RootLayout({

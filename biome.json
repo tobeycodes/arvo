@@ -9,7 +9,8 @@
       "tsconfig.tsbuildinfo",
       "pnpm-lock.yaml",
       "storybook-static",
-      "coverage"
+      "coverage",
+      "app.css"
     ]
   },
   "formatter": {
@@ -23,6 +24,9 @@
       "correctness": {
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off"
       }
     }
   },
