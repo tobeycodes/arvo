@@ -27,5 +27,6 @@ export default {
     "autodocs",
     "solana",
     "xargo",
+    "cfgs",
   ],
 };

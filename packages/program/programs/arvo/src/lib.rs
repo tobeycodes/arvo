@@ -1,3 +1,4 @@
+#![allow(unexpected_cfgs)]
 pub mod constants;
 pub mod error;
 pub mod instructions;
@@ -7,7 +8,7 @@ use anchor_lang::prelude::*;
 
 pub use constants::*;
 pub use instructions::*;
-pub use state::*;
+// pub use state::*;
 
 declare_id!("8D88FYahqfEdz2SsWdh2adawowfHDYCBHCpKNoaBRyj6");
 
