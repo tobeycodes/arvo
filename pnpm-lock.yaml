@@ -45,6 +45,9 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@arvo/config-typescript':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
       '@testing-library/dom':
         specifier: 10.4.0
         version: 10.4.0
@@ -94,6 +97,9 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@arvo/config-typescript':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
       '@chromatic-com/storybook':
         specifier: 3.2.6
         version: 3.2.6(react@19.1.0)(storybook@8.6.12(prettier@3.5.3))
@@ -163,6 +169,8 @@ importers:
       vitest:
         specifier: 3.1.2
         version: 3.1.2(@types/node@22.15.3)(@vitest/browser@3.1.2)(@vitest/ui@3.1.2)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1)
+
+  packages/config-typescript: {}
 
 packages:
 

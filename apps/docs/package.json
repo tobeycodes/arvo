@@ -7,6 +7,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@arvo/config-typescript": "workspace:*",
     "@chromatic-com/storybook": "3.2.6",
     "@storybook/addon-a11y": "8.6.12",
     "@storybook/addon-designs": "8.2.1",
