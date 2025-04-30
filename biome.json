@@ -42,7 +42,7 @@
   },
   "overrides": [
     {
-      "include": ["*.config.*", "apps/app/src/app/**"],
+      "include": ["*.config.*", "config.ts", "apps/app/src/app/**"],
       "linter": {
         "rules": {
           "style": {
