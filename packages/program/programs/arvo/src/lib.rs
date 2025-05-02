@@ -10,7 +10,7 @@ pub use constants::*;
 pub use instructions::*;
 // pub use state::*;
 
-declare_id!("8D88FYahqfEdz2SsWdh2adawowfHDYCBHCpKNoaBRyj6");
+declare_id!("6Ty8ByqCLeRGHigsvyD6skD5MSMQDu2svhL8b4pf3Dhk");
 
 #[program]
 pub mod arvo {
