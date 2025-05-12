@@ -37,13 +37,6 @@ export const Small: Story = {
   },
 };
 
-export const Medium: Story = {
-  args: {
-    children: "Button",
-    size: "md",
-  },
-};
-
 export const Large: Story = {
   args: {
     children: "Button",

@@ -14,7 +14,8 @@
     "pnpm-lock.yaml",
     "component.hbs",
     "story.hbs",
-    "Cargo.lock"
+    "Cargo.lock",
+    "\\.tsx$"
   ],
   "Format": "",
   "IgnoreDefaults": false,
