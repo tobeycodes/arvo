@@ -12,7 +12,7 @@ pub mod instructions;
 pub use instructions::*;
 
 pub mod state;
-// pub use state::*;
+pub use state::*;
 
 declare_id!("8ngTZNrGPpnj3a1A9Bq9p7RGPEBxZmk3JmKhACknvpQK");
 
@@ -28,8 +28,8 @@ pub mod arvo {
         deposit::handler(ctx)
     }
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+    pub fn initialize(ctx: Context<Initialize>, args: InitializeArgs) -> Result<()> {
+        initialize::handler(ctx, args)
     }
 
     pub fn remove_user(ctx: Context<RemoveUser>) -> Result<()> {
