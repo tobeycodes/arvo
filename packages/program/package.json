@@ -2,7 +2,8 @@
   "name": "@arvo/program",
   "version": "0.0.0",
   "dependencies": {
-    "@coral-xyz/anchor": "0.31.1"
+    "@coral-xyz/anchor": "0.31.1",
+    "@solana/spl-token": "^0.4.13"
   },
   "devDependencies": {
     "@arvo/config-typescript": "workspace:*",
