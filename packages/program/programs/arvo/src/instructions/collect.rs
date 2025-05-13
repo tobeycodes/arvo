@@ -4,7 +4,16 @@ use anchor_lang::prelude::*;
 use anchor_spl::{
     mint,
     token::Token,
-    token_2022::Token2022,
+    token_2022::{
+        spl_token_2022::{
+            extension::{
+                interest_bearing_mint::InterestBearingConfig, BaseStateWithExtensions,
+                StateWithExtensions,
+            },
+            state::Mint as MintState,
+        },
+        Token2022,
+    },
     token_interface::{
         mint_to_checked, transfer_checked, Mint, MintToChecked, TokenAccount, TransferChecked,
     },
@@ -62,8 +71,32 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, Collect<'info>>) -> Result
     for chunk in accounts.chunks(2) {
         let deposit_account = &chunk[0];
         let ata_account = &chunk[1];
-        let data = deposit_account.try_borrow_mut_data()?;
-        let deposit = DepositState::try_deserialize(&mut data.as_ref())?;
+
+        let amount = {
+            let mint_info = ctx.accounts.mint.to_account_info();
+            let mint_data = mint_info.data.borrow();
+            let mint_state = StateWithExtensions::<MintState>::unpack(&mint_data)?;
+            let interest_bearing_config = mint_state.get_extension::<InterestBearingConfig>()?;
+            let clock = Clock::get()?;
+            let amount = interest_bearing_config.amount_to_ui_amount(
+                1_000_000,
+                ctx.accounts.mint.decimals,
+                clock.unix_timestamp,
+            );
+
+            amount
+                .map(|s| s.parse::<f64>().unwrap_or(0.0))
+                .unwrap_or(0.0)
+        };
+
+        let deposit_amount = {
+            let data = deposit_account.try_borrow_mut_data()?;
+            let deposit = DepositState::try_deserialize(&mut data.as_ref())?;
+
+            deposit.amount
+        };
+
+        let mint_amount = (deposit_amount as f64 / amount) as u64;
 
         mint_to_checked(
             CpiContext::new(
@@ -74,7 +107,7 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, Collect<'info>>) -> Result
                     authority: ctx.accounts.authority.to_account_info(),
                 },
             ),
-            deposit.amount,
+            mint_amount,
             ctx.accounts.mint.decimals,
         )?;
 
@@ -89,7 +122,7 @@ pub fn handler<'info>(ctx: Context<'_, '_, '_, 'info, Collect<'info>>) -> Result
                 },
             )
             .with_signer(&[&[VAULT_SEED, &[ctx.bumps.vault]]]),
-            deposit.amount,
+            deposit_amount,
             ctx.accounts.usdc_mint.decimals,
         )?;
     }

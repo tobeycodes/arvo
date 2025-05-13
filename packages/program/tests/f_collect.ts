@@ -85,7 +85,7 @@ describe("collect", () => {
       if (error instanceof web3.SendTransactionError) {
         expect(error.logs).to.include(
           // editorconfig-checker-disable-next-line
-          "Program log: AnchorError thrown in programs/arvo/src/instructions/collect.rs:55. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
+          "Program log: AnchorError thrown in programs/arvo/src/instructions/collect.rs:64. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
         );
 
         return;
@@ -116,6 +116,8 @@ describe("collect", () => {
       custodyUsdcAccount.address,
     );
 
+    expect(0).to.equal(usdcCustodyOldBalance.value.uiAmount);
+
     const [vaultPda] = web3.PublicKey.findProgramAddressSync(
       [Buffer.from("vault")],
       program.programId,
@@ -124,6 +126,8 @@ describe("collect", () => {
     const usdcAta = await getAssociatedTokenAddress(usdcMint, vaultPda, true);
 
     const usdcVaultOldBalance = await connection.getTokenAccountBalance(usdcAta);
+
+    expect(100).to.equal(usdcVaultOldBalance.value.uiAmount);
 
     const userMintAccount = await getOrCreateAssociatedTokenAccount(
       connection,
@@ -135,6 +139,12 @@ describe("collect", () => {
       {},
       TOKEN_2022_PROGRAM_ID,
     );
+
+    const userMintAccountOldBalance = await connection.getTokenAccountBalance(
+      userMintAccount.address,
+    );
+
+    expect(0).to.equal(userMintAccountOldBalance.value.uiAmount);
 
     await program.methods
       .collect()
@@ -162,12 +172,14 @@ describe("collect", () => {
 
     const usdcVaultNewBalance = await connection.getTokenAccountBalance(usdcAta);
 
-    expect((usdcVaultOldBalance.value.uiAmount ?? Math.random()) - 100).to.equal(
-      usdcVaultNewBalance.value.uiAmount,
+    const userMintAccountNewBalance = await connection.getTokenAccountBalance(
+      userMintAccount.address,
     );
 
-    expect((usdcCustodyOldBalance.value.uiAmount ?? Math.random()) + 100).to.equal(
-      usdcCustodyNewBalance.value.uiAmount,
-    );
+    expect(0).to.equal(usdcVaultNewBalance.value.uiAmount);
+
+    expect(100).to.equal(usdcCustodyNewBalance.value.uiAmount);
+
+    expect(99).to.equal(Math.floor(userMintAccountNewBalance.value.uiAmount ?? 0));
   });
 });
