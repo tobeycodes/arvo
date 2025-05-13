@@ -15,6 +15,10 @@
     "ts-mocha": "11.1.0",
     "typescript": "5.8.3"
   },
+  "exports": {
+    "./types": "./target/types/arvo.ts",
+    "./idl": "./target/idl/arvo.json"
+  },
   "scripts": {
     "clean": "rm -rf .anchor .turbo node_modules target test-ledger tsconfig.tsbuildinfo"
   }
