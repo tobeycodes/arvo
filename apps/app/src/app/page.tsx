@@ -1,23 +1,13 @@
 "use client";
 
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { Alert, AlertCircle, AlertDescription, AlertTitle } from "@arvo/ui/components/alert";
+import { Button } from "@arvo/ui/components/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@arvo/ui/components/tabs";
 import { useWallet } from "@solana/wallet-adapter-react";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@arvo/ui/components/tabs";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useDeposit } from "../hooks/use-deposit";
 import { useUsdcBalance } from "../hooks/use-usdc-balance";
 import { useUser } from "../hooks/use-user";
-import {
-  AlertCircle,
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@arvo/ui/components/alert";
-import { useDeposit } from "../hooks/use-deposit";
-import { Button } from "@arvo/ui/components/button";
 
 export default function Home() {
   const { publicKey } = useWallet();
@@ -26,15 +16,13 @@ export default function Home() {
   const { mutate } = useDeposit();
 
   return (
-    <div className="container px-4 mx-auto py-10 gap-5 max-w-[400px] flex flex-col items-center">
-      {!publicKey ? (
+    <div className="container mx-auto flex max-w-[400px] flex-col items-center gap-5 px-4 py-10">
+      {publicKey ? null : (
         <>
-          <h1 className="text-2xl font-bold text-center">
-            Please connect your wallet
-          </h1>
+          <h1 className="text-center font-bold text-2xl">Please connect your wallet</h1>
           <WalletMultiButton />
         </>
-      ) : null}
+      )}
 
       {userData?.isVerified === false || (publicKey && userError) ? (
         <Alert className="bg-red-500 text-white">
@@ -55,14 +43,11 @@ export default function Home() {
             </TabsList>
             <TabsContent value="account" className="flex flex-col gap-2">
               <p className="text-center">
-                Your USDC balance is:{" "}
-                <span className="font-bold">{usdcBalance} USDC</span>
+                Your USDC balance is: <span className="font-bold">{usdcBalance} USDC</span>
               </p>
               <Button onClick={() => mutate()}>Deposit</Button>
             </TabsContent>
-            <TabsContent value="password">
-              Change your password here.
-            </TabsContent>
+            <TabsContent value="password">Change your password here.</TabsContent>
           </Tabs>
         </>
       ) : null}

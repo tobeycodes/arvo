@@ -3,9 +3,6 @@ import { setProjectAnnotations } from "@storybook/experimental-nextjs-vite";
 import { beforeAll } from "vitest";
 import * as projectAnnotations from "./preview.ts";
 
-const project = setProjectAnnotations([
-  a11yAddonAnnotations,
-  projectAnnotations,
-]);
+const project = setProjectAnnotations([a11yAddonAnnotations, projectAnnotations]);
 
 beforeAll(project.beforeAll);

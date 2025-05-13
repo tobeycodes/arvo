@@ -69,12 +69,15 @@
       }
     },
     {
-      "include": ["packages/program/**"],
+      "include": ["packages/program/**", "apps/admin/**"],
       "linter": {
         "rules": {
           "suspicious": {
             "noConsole": "off",
             "noConsoleLog": "off"
+          },
+          "correctness": {
+            "noNodejsModules": "off"
           }
         }
       }

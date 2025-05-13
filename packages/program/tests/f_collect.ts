@@ -1,18 +1,13 @@
+import { AnchorProvider, type Program, setProvider, web3, workspace } from "@coral-xyz/anchor";
 import {
-  AnchorProvider,
-  Program,
-  setProvider,
-  web3,
-  workspace,
-} from "@coral-xyz/anchor";
-import { Arvo } from "../target/types/arvo";
-import { mintKeypair, usdcMint, userKeypair } from "./utils";
-import {
+  TOKEN_2022_PROGRAM_ID,
   getAssociatedTokenAddress,
   getOrCreateAssociatedTokenAccount,
-  TOKEN_2022_PROGRAM_ID,
 } from "@solana/spl-token";
 import { expect } from "chai";
+import { describe, it } from "mocha";
+import type { Arvo } from "../target/types/arvo";
+import { mintKeypair, usdcMint, userKeypair } from "./utils";
 
 describe("collect", () => {
   setProvider(AnchorProvider.env());
@@ -84,13 +79,12 @@ describe("collect", () => {
       .transaction();
 
     try {
-      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [
-        fakeUser,
-      ]);
+      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [fakeUser]);
       expect.fail("Transaction should have failed");
     } catch (error) {
       if (error instanceof web3.SendTransactionError) {
         expect(error.logs).to.include(
+          // editorconfig-checker-disable-next-line
           "Program log: AnchorError thrown in programs/arvo/src/instructions/collect.rs:55. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
         );
 
@@ -101,7 +95,7 @@ describe("collect", () => {
     }
   });
 
-  it("collect instruction mints new tokens and sends to depositer", async () => {
+  it("collect instruction mints new tokens and sends to deposit authority", async () => {
     const mint = mintKeypair();
     const user = userKeypair();
     const custody = web3.Keypair.generate();
@@ -118,7 +112,7 @@ describe("collect", () => {
       custody.publicKey,
     );
 
-    const udscCustodyOldBalance = await connection.getTokenAccountBalance(
+    const usdcCustodyOldBalance = await connection.getTokenAccountBalance(
       custodyUsdcAccount.address,
     );
 
@@ -129,8 +123,7 @@ describe("collect", () => {
 
     const usdcAta = await getAssociatedTokenAddress(usdcMint, vaultPda, true);
 
-    const udscVaultOldBalance =
-      await connection.getTokenAccountBalance(usdcAta);
+    const usdcVaultOldBalance = await connection.getTokenAccountBalance(usdcAta);
 
     const userMintAccount = await getOrCreateAssociatedTokenAccount(
       connection,
@@ -163,19 +156,18 @@ describe("collect", () => {
       ])
       .rpc();
 
-    const udscCustodyNewBalance = await connection.getTokenAccountBalance(
+    const usdcCustodyNewBalance = await connection.getTokenAccountBalance(
       custodyUsdcAccount.address,
     );
 
-    const udscVaultNewBalance =
-      await connection.getTokenAccountBalance(usdcAta);
+    const usdcVaultNewBalance = await connection.getTokenAccountBalance(usdcAta);
 
-    expect(
-      (udscVaultOldBalance.value.uiAmount ?? Math.random()) - 100,
-    ).to.equal(udscVaultNewBalance.value.uiAmount);
+    expect((usdcVaultOldBalance.value.uiAmount ?? Math.random()) - 100).to.equal(
+      usdcVaultNewBalance.value.uiAmount,
+    );
 
-    expect(
-      (udscCustodyOldBalance.value.uiAmount ?? Math.random()) + 100,
-    ).to.equal(udscCustodyNewBalance.value.uiAmount);
+    expect((usdcCustodyOldBalance.value.uiAmount ?? Math.random()) + 100).to.equal(
+      usdcCustodyNewBalance.value.uiAmount,
+    );
   });
 });

@@ -1,24 +1,16 @@
-import * as os from "os";
-import * as path from "path";
-import { Arvo } from "@arvo/program/types";
-import {
-  AnchorProvider,
-  Program,
-  setProvider,
-  Wallet,
-  web3,
-} from "@coral-xyz/anchor";
+import { homedir } from "node:os";
+import { join } from "node:path";
 import idl from "@arvo/program/idl";
+import type { Arvo } from "@arvo/program/types";
+import { AnchorProvider, Program, Wallet, setProvider, web3 } from "@coral-xyz/anchor";
 
 export const addUser = async (userPublicKey: string) => {
   const connection = new web3.Connection("http://localhost:8899", {
     commitment: "confirmed",
   });
-  const walletPath = path.join(os.homedir(), ".config", "solana", "id.json");
+  const walletPath = join(homedir(), ".config", "solana", "id.json");
   const walletFile = require(walletPath);
-  const wallet = new Wallet(
-    web3.Keypair.fromSecretKey(new Uint8Array(walletFile)),
-  );
+  const wallet = new Wallet(web3.Keypair.fromSecretKey(new Uint8Array(walletFile)));
 
   const provider = new AnchorProvider(connection, wallet);
 
@@ -28,7 +20,5 @@ export const addUser = async (userPublicKey: string) => {
 
   const user = new web3.PublicKey(userPublicKey);
 
-  const tx = await program.methods.addUser(user).rpc();
-
-  console.log("Your transaction signature", tx);
+  await program.methods.addUser(user).rpc();
 };

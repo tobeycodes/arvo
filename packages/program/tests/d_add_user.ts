@@ -1,12 +1,7 @@
-import {
-  AnchorProvider,
-  Program,
-  setProvider,
-  web3,
-  workspace,
-} from "@coral-xyz/anchor";
-import { Arvo } from "../target/types/arvo";
+import { AnchorProvider, type Program, setProvider, web3, workspace } from "@coral-xyz/anchor";
 import { expect } from "chai";
+import { describe, it } from "mocha";
+import type { Arvo } from "../target/types/arvo";
 import { userKeypair } from "./utils";
 
 describe("add_user", () => {
@@ -19,10 +14,7 @@ describe("add_user", () => {
   it("expect instruction error using a non authorized account", async () => {
     const user = web3.Keypair.generate();
 
-    const airdropTx = await connection.requestAirdrop(
-      user.publicKey,
-      web3.LAMPORTS_PER_SOL * 1,
-    );
+    const airdropTx = await connection.requestAirdrop(user.publicKey, web3.LAMPORTS_PER_SOL * 1);
 
     const latestBlockHash = await connection.getLatestBlockhash();
 
@@ -40,13 +32,12 @@ describe("add_user", () => {
       .transaction();
 
     try {
-      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [
-        user,
-      ]);
+      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [user]);
       expect.fail("Transaction should have failed");
     } catch (error) {
       if (error instanceof web3.SendTransactionError) {
         expect(error.logs).to.include(
+          // editorconfig-checker-disable-next-line
           "Program log: AnchorError thrown in programs/arvo/src/instructions/add_user.rs:30. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
         );
 
@@ -70,9 +61,7 @@ describe("add_user", () => {
       expect.fail("Expected error not thrown");
     } catch (error) {
       expect(error).to.be.instanceOf(Error);
-      expect((error as Error).message).to.include(
-        "Account does not exist or has no data",
-      );
+      expect((error as Error).message).to.include("Account does not exist or has no data");
     }
   });
 

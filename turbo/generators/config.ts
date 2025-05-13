@@ -21,8 +21,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: "input",
         name: "name",
         message: "What is the name of the component?",
-        validate: (value: string) =>
-          value ? true : "Component name is required",
+        validate: (value: string) => (value ? true : "Component name is required"),
       },
       {
         message: "Do you want to create a Storybook story?",

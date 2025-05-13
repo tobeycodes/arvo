@@ -15,7 +15,8 @@
     "component.hbs",
     "story.hbs",
     "Cargo.lock",
-    "\\.tsx$"
+    "\\.tsx$",
+    "\\.json$"
   ],
   "Format": "",
   "IgnoreDefaults": false,

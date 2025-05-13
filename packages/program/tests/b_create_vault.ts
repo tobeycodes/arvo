@@ -1,17 +1,9 @@
-import {
-  AnchorProvider,
-  Program,
-  setProvider,
-  web3,
-  workspace,
-} from "@coral-xyz/anchor";
-import { Arvo } from "../target/types/arvo";
-import { mintKeypair, usdcMint } from "./utils";
+import { AnchorProvider, type Program, setProvider, web3, workspace } from "@coral-xyz/anchor";
+import { TOKEN_2022_PROGRAM_ID, getAssociatedTokenAddress } from "@solana/spl-token";
 import { expect } from "chai";
-import {
-  getAssociatedTokenAddress,
-  TOKEN_2022_PROGRAM_ID,
-} from "@solana/spl-token";
+import { describe, it } from "mocha";
+import type { Arvo } from "../target/types/arvo";
+import { mintKeypair, usdcMint } from "./utils";
 
 describe("create_vault", () => {
   setProvider(AnchorProvider.env());
@@ -23,10 +15,7 @@ describe("create_vault", () => {
     const user = web3.Keypair.generate();
     const mint = mintKeypair();
 
-    const airdropTx = await connection.requestAirdrop(
-      user.publicKey,
-      web3.LAMPORTS_PER_SOL * 1,
-    );
+    const airdropTx = await connection.requestAirdrop(user.publicKey, web3.LAMPORTS_PER_SOL * 1);
 
     const latestBlockHash = await connection.getLatestBlockhash();
 
@@ -45,13 +34,12 @@ describe("create_vault", () => {
       .transaction();
 
     try {
-      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [
-        user,
-      ]);
+      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [user]);
       expect.fail("Transaction should have failed");
     } catch (error) {
       if (error instanceof web3.SendTransactionError) {
         expect(error.logs).to.include(
+          // editorconfig-checker-disable-next-line
           "Program log: AnchorError thrown in programs/arvo/src/instructions/create_vault.rs:63. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
         );
 

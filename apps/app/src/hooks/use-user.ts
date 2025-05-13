@@ -1,11 +1,7 @@
-import { AnchorProvider, Program, setProvider, web3 } from "@coral-xyz/anchor";
-import {
-  useAnchorWallet,
-  useConnection,
-  useWallet,
-} from "@solana/wallet-adapter-react";
-import type { Arvo } from "@arvo/program/types";
 import idl from "@arvo/program/idl";
+import type { Arvo } from "@arvo/program/types";
+import { AnchorProvider, Program, setProvider, web3 } from "@coral-xyz/anchor";
+import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useQuery } from "@tanstack/react-query";
 
 export const useUser = () => {
@@ -20,7 +16,7 @@ export const useUser = () => {
   return useQuery({
     queryKey: ["user", publicKey?.toString()],
     queryFn: async () => {
-      if (!publicKey || !wallet) {
+      if (!(publicKey && wallet)) {
         throw new Error("Wallet not connected");
       }
 

@@ -28,5 +28,10 @@ export default {
     "solana",
     "xargo",
     "cfgs",
+    "keypair",
+    "usdc",
+    "blockhash",
+    "lamports",
+    "devnet",
   ],
 };

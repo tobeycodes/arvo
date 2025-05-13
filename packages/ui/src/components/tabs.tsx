@@ -5,13 +5,7 @@ import type { ComponentProps } from "react";
 import { cn } from "../lib/utils";
 
 function Tabs({ className, ...props }: ComponentProps<typeof Root>) {
-  return (
-    <Root
-      data-slot="tabs"
-      className={cn("flex flex-col gap-2", className)}
-      {...props}
-    />
-  );
+  return <Root data-slot="tabs" className={cn("flex flex-col gap-2", className)} {...props} />;
 }
 
 function TabsList({ className, ...props }: ComponentProps<typeof List>) {
@@ -42,11 +36,7 @@ function TabsTrigger({ className, ...props }: ComponentProps<typeof Trigger>) {
 
 function TabsContent({ className, ...props }: ComponentProps<typeof Content>) {
   return (
-    <Content
-      data-slot="tabs-content"
-      className={cn("flex-1 outline-none", className)}
-      {...props}
-    />
+    <Content data-slot="tabs-content" className={cn("flex-1 outline-none", className)} {...props} />
   );
 }
 

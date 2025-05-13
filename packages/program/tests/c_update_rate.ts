@@ -1,19 +1,9 @@
-import {
-  AnchorProvider,
-  Program,
-  setProvider,
-  web3,
-  workspace,
-} from "@coral-xyz/anchor";
-import { Arvo } from "../target/types/arvo";
-import { mintKeypair } from "./utils";
+import { AnchorProvider, type Program, setProvider, web3, workspace } from "@coral-xyz/anchor";
+import { ExtensionType, TOKEN_2022_PROGRAM_ID, getExtensionData, getMint } from "@solana/spl-token";
 import { expect } from "chai";
-import {
-  ExtensionType,
-  getExtensionData,
-  getMint,
-  TOKEN_2022_PROGRAM_ID,
-} from "@solana/spl-token";
+import { describe, it } from "mocha";
+import type { Arvo } from "../target/types/arvo";
+import { mintKeypair } from "./utils";
 
 describe("update_rate", () => {
   setProvider(AnchorProvider.env());
@@ -25,10 +15,7 @@ describe("update_rate", () => {
     const user = web3.Keypair.generate();
     const mint = mintKeypair();
 
-    const airdropTx = await connection.requestAirdrop(
-      user.publicKey,
-      web3.LAMPORTS_PER_SOL * 1,
-    );
+    const airdropTx = await connection.requestAirdrop(user.publicKey, web3.LAMPORTS_PER_SOL * 1);
 
     const latestBlockHash = await connection.getLatestBlockhash();
 
@@ -47,13 +34,12 @@ describe("update_rate", () => {
       .transaction();
 
     try {
-      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [
-        user,
-      ]);
+      await web3.sendAndConfirmTransaction(program.provider.connection, tx, [user]);
       expect.fail("Transaction should have failed");
     } catch (error) {
       if (error instanceof web3.SendTransactionError) {
         expect(error.logs).to.include(
+          // editorconfig-checker-disable-next-line
           "Program log: AnchorError thrown in programs/arvo/src/instructions/update_rate.rs:28. Error Code: Unauthorized. Error Number: 6000. Error Message: You are not authorized to perform this action.",
         );
 
@@ -79,10 +65,7 @@ describe("update_rate", () => {
       oldMintAccount.tlvData,
     );
 
-    await program.methods
-      .updateRate(16000)
-      .accounts({ mint: mint.publicKey })
-      .rpc();
+    await program.methods.updateRate(16000).accounts({ mint: mint.publicKey }).rpc();
 
     const newMintAccount = await getMint(
       connection,
@@ -96,8 +79,6 @@ describe("update_rate", () => {
       newMintAccount.tlvData,
     );
 
-    expect(oldMintData?.toString("hex")).to.not.equal(
-      newMintData?.toString("hex"),
-    );
+    expect(oldMintData?.toString("hex")).to.not.equal(newMintData?.toString("hex"));
   });
 });

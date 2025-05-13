@@ -20,6 +20,4 @@ export const userKeypair = (): web3.Keypair => {
   return cachedUser;
 };
 
-export const usdcMint = new web3.PublicKey(
-  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-);
+export const usdcMint = new web3.PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
