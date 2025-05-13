@@ -1,6 +1,9 @@
 pub mod add_user;
 pub use add_user::*;
 
+pub mod collect;
+pub use collect::*;
+
 pub mod create_vault;
 pub use create_vault::*;
 

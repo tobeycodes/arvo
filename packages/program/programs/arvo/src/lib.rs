@@ -28,8 +28,8 @@ pub mod arvo {
         create_vault::handler(ctx)
     }
 
-    pub fn deposit(ctx: Context<Deposit>) -> Result<()> {
-        deposit::handler(ctx)
+    pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
+        deposit::handler(ctx, amount)
     }
 
     pub fn initialize(ctx: Context<Initialize>, args: InitializeArgs) -> Result<()> {
