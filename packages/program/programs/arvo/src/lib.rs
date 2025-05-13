@@ -14,7 +14,7 @@ pub use instructions::*;
 pub mod state;
 pub use state::*;
 
-declare_id!("8ngTZNrGPpnj3a1A9Bq9p7RGPEBxZmk3JmKhACknvpQK");
+declare_id!("5DH1XTTYRWJo2SeYaVtyTcf2mKHExXQb48bUCoX99vPf");
 
 #[program]
 pub mod arvo {
