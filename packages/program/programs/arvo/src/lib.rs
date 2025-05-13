@@ -24,6 +24,10 @@ pub mod arvo {
         add_user::handler(ctx)
     }
 
+    pub fn create_vault(ctx: Context<CreateVault>) -> Result<()> {
+        create_vault::handler(ctx)
+    }
+
     pub fn deposit(ctx: Context<Deposit>) -> Result<()> {
         deposit::handler(ctx)
     }
