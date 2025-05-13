@@ -4,6 +4,9 @@ use anchor_lang::prelude::*;
 pub const ADMIN_SEED: &[u8] = b"admin";
 
 #[constant]
+pub const USER_SEED: &[u8] = b"user";
+
+#[constant]
 pub const VAULT_SEED: &[u8] = b"vault";
 
 #[constant]

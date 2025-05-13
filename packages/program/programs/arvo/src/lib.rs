@@ -20,8 +20,8 @@ declare_id!("8ngTZNrGPpnj3a1A9Bq9p7RGPEBxZmk3JmKhACknvpQK");
 pub mod arvo {
     use super::*;
 
-    pub fn add_user(ctx: Context<AddUser>) -> Result<()> {
-        add_user::handler(ctx)
+    pub fn add_user(ctx: Context<AddUser>, user: Pubkey) -> Result<()> {
+        add_user::handler(ctx, user)
     }
 
     pub fn create_vault(ctx: Context<CreateVault>) -> Result<()> {
