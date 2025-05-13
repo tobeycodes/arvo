@@ -36,6 +36,10 @@ pub mod arvo {
         initialize::handler(ctx, args)
     }
 
+    pub fn redeem(ctx: Context<Redeem>) -> Result<()> {
+        redeem::handler(ctx)
+    }
+
     pub fn remove_user(ctx: Context<RemoveUser>) -> Result<()> {
         remove_user::handler(ctx)
     }

@@ -13,6 +13,9 @@ pub use deposit::*;
 pub mod initialize;
 pub use initialize::*;
 
+pub mod redeem;
+pub use redeem::*;
+
 pub mod remove_user;
 pub use remove_user::*;
 
