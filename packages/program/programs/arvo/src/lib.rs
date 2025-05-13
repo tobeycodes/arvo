@@ -24,6 +24,10 @@ pub mod arvo {
         add_user::handler(ctx, user)
     }
 
+    pub fn collect<'info>(ctx: Context<'_, '_, '_, 'info, Collect<'info>>) -> Result<()> {
+        collect::handler(ctx)
+    }
+
     pub fn create_vault(ctx: Context<CreateVault>) -> Result<()> {
         create_vault::handler(ctx)
     }
