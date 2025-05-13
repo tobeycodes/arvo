@@ -52,8 +52,8 @@ pub mod arvo {
         update_metadata::handler(ctx)
     }
 
-    pub fn update_rate(ctx: Context<UpdateRate>) -> Result<()> {
-        update_rate::handler(ctx)
+    pub fn update_rate(ctx: Context<UpdateRate>, rate: i16) -> Result<()> {
+        update_rate::handler(ctx, rate)
     }
 
     pub fn withdraw(ctx: Context<Withdraw>) -> Result<()> {
