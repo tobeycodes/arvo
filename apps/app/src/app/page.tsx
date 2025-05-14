@@ -35,6 +35,16 @@ export default function Home() {
       ) : null}
 
       {userData?.isVerified === true ? (
+        <Alert className="bg-green-500 text-white">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Welcome to Arvo</AlertTitle>
+          <AlertDescription className="text-white">
+            Your account is verified and you can start using the app.
+          </AlertDescription>
+        </Alert>
+      ) : null}
+
+      {userData?.isVerified === true ? (
         <>
           <Tabs defaultValue="account" className="w-full">
             <TabsList className="w-full">

@@ -2,9 +2,10 @@ import idl from "@arvo/program/idl";
 import type { Arvo } from "@arvo/program/types";
 import { AnchorProvider, BN, Program, setProvider, web3 } from "@coral-xyz/anchor";
 import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeposit = () => {
+  const queryClient = useQueryClient();
   const { connection } = useConnection();
   const { publicKey } = useWallet();
   const wallet = useAnchorWallet();
@@ -13,9 +14,9 @@ export const useDeposit = () => {
     connection,
   }) as Program<Arvo>;
 
-  const amountToMint = 100_000_000;
+  const amountToMint = 1_000_000;
 
-  const mint = new web3.PublicKey("79NJVjqXcz4b4VtdAwBmoJS8JqgS6UiBq4fpCMmVoABi");
+  const mint = new web3.PublicKey("G8rqkQXvS9jisjsvKdjwFynyBRqjJPMouRQrnYrNtmPP");
 
   return useMutation({
     mutationKey: ["deposit"],
@@ -35,12 +36,13 @@ export const useDeposit = () => {
         })
         .transaction();
 
-      const latestBlockhash = await connection.getLatestBlockhash();
-
-      transaction.recentBlockhash = latestBlockhash.blockhash;
-      transaction.feePayer = publicKey;
-
-      return await wallet?.signTransaction(transaction);
+      return await provider.sendAndConfirm(transaction, [], {
+        skipPreflight: false,
+        commitment: "confirmed",
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["usdcBalance", publicKey?.toString()] });
     },
   });
 };

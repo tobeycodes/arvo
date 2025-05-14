@@ -12,7 +12,7 @@ export function useUsdcBalance() {
   const { publicKey } = useWallet();
 
   return useQuery({
-    queryKey: ["repoData", publicKey?.toString()],
+    queryKey: ["usdcBalance", publicKey?.toString()],
     queryFn: async () => {
       if (!publicKey) {
         throw new Error("Wallet not connected");
