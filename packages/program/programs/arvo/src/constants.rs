@@ -17,3 +17,6 @@ pub const WITHDRAW_SEED: &[u8] = b"withdraw";
 
 #[constant]
 pub const ADMIN_PUBLIC_KEY: Pubkey = pubkey!("H2S3PxG5jtpJt6MCUyqbrz5TigW5M7zQgkEMmLsyacaT");
+
+#[constant]
+pub const USDC_DEVNET_KEY: Pubkey = pubkey!("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");

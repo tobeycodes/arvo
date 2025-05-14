@@ -1,8 +1,7 @@
-use crate::{error::ErrorCode, Admin, ADMIN_SEED, VAULT_SEED};
+use crate::{error::ErrorCode, Admin, ADMIN_SEED, USDC_DEVNET_KEY, VAULT_SEED};
 use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
-    mint,
     token::Token,
     token_2022::Token2022,
     token_interface::{Mint, TokenAccount},
@@ -38,7 +37,7 @@ pub struct CreateVault<'info> {
     )]
     pub mint_account: InterfaceAccount<'info, TokenAccount>,
 
-    #[account(address = mint::USDC)]
+    #[account(address = USDC_DEVNET_KEY)]
     pub usdc_mint: InterfaceAccount<'info, Mint>,
 
     #[account(

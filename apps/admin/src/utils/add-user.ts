@@ -5,7 +5,7 @@ import type { Arvo } from "@arvo/program/types";
 import { AnchorProvider, Program, Wallet, setProvider, web3 } from "@coral-xyz/anchor";
 
 export const addUser = async (userPublicKey: string) => {
-  const connection = new web3.Connection("http://localhost:8899", {
+  const connection = new web3.Connection("https://api.devnet.solana.com", {
     commitment: "confirmed",
   });
   const walletPath = join(homedir(), ".config", "solana", "id.json");

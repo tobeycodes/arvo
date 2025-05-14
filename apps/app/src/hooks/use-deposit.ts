@@ -33,6 +33,8 @@ export const useDeposit = () => {
         .accounts({
           mint: mint,
           authority: publicKey,
+          // @ts-expect-error -- for some reason this is needed on devnet
+          usdcMint: new web3.PublicKey("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"),
         })
         .transaction();
 

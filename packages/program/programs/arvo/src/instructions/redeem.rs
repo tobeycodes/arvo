@@ -1,8 +1,7 @@
 use crate::error::ErrorCode;
-use crate::{Admin, WithdrawState, ADMIN_SEED, VAULT_SEED};
+use crate::{Admin, WithdrawState, ADMIN_SEED, USDC_DEVNET_KEY, VAULT_SEED};
 use anchor_lang::prelude::*;
 use anchor_spl::{
-    mint,
     token::Token,
     token_2022::{
         spl_token_2022::{
@@ -41,7 +40,7 @@ pub struct Redeem<'info> {
     #[account(mut)]
     pub mint: InterfaceAccount<'info, Mint>,
 
-    #[account(address = mint::USDC)]
+    #[account(address = USDC_DEVNET_KEY)]
     pub usdc_mint: InterfaceAccount<'info, Mint>,
 
     #[account(
