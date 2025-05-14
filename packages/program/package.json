@@ -20,6 +20,7 @@
     "./idl": "./target/idl/arvo.json"
   },
   "scripts": {
-    "clean": "rm -rf .anchor .turbo node_modules target test-ledger tsconfig.tsbuildinfo"
+    "clean": "rm -rf .anchor .turbo node_modules target test-ledger tsconfig.tsbuildinfo",
+    "test": "anchor test"
   }
 }

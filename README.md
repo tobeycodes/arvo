@@ -84,3 +84,50 @@ The Arvo program provides **nine primary instructions** that form its core funct
 - **pnpm**: Package manager
 - **Vitest**: Testing framework
 - **Biome**: Linting and formatting
+
+### Prerequisites
+
+To work with the Arvo codebase, you'll need:
+
+- Rust 1.86.0
+- Node.js: Version 22.14.0 or higher ci.yaml:48
+- PNPM: Version 10.10.0 or higher
+
+### Getting Started
+
+Clone the repository
+
+```
+git clone https://github.com/tobeycodes/arvo.git
+cd arvo
+```
+
+Install dependencies using PNPM
+
+`pnpm install`
+
+Start development servers for all packages
+
+`pnpm dev`
+
+#### Development Commands
+
+| Command          | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| pnpm dev         | Start development servers for all packages      |
+| pnpm build       | Build all packages ci.yaml:145-146              |
+| pnpm test        | Run tests across all packages                   |
+| pnpm coverage    | Run tests with coverage reporting               |
+| pnpm lint        | Run linting across all packages ci.yaml:124-125 |
+| pnpm check-types | Run TypeScript type checking ci.yaml:166-167    |
+| pnpm clean       | Clean build artifacts and dependencies          |
+
+# To run commands for a specific package, use:
+
+`pnpm --filter <package-name> <command>`
+
+# For example:
+
+To run Anchor tests only
+
+`pnpm --filter @arvo/program test`

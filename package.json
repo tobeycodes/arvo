@@ -32,7 +32,7 @@
     "syncpack-format": "syncpack format",
     "syncpack-lint": "syncpack lint",
     "syncpack-update": "syncpack update",
-    "test": "vitest",
+    "test": "turbo test",
     "ui": "vitest --ui --watch"
   }
 }
