@@ -40,7 +40,7 @@ pub mod arvo {
         initialize::handler(ctx, args)
     }
 
-    pub fn redeem(ctx: Context<Redeem>) -> Result<()> {
+    pub fn redeem<'info>(ctx: Context<'_, '_, '_, 'info, Redeem<'info>>) -> Result<()> {
         redeem::handler(ctx)
     }
 
