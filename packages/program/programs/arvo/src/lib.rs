@@ -64,7 +64,7 @@ pub mod arvo {
         update_rate::handler(ctx, rate)
     }
 
-    pub fn withdraw(ctx: Context<Withdraw>) -> Result<()> {
-        withdraw::handler(ctx)
+    pub fn withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
+        withdraw::handler(ctx, amount)
     }
 }
