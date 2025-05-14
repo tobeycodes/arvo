@@ -5,6 +5,9 @@ package_manager = "pnpm"
 resolution = true
 skip-lint = false
 
+[programs.devnet]
+arvo = "5DH1XTTYRWJo2SeYaVtyTcf2mKHExXQb48bUCoX99vPf"
+
 [programs.localnet]
 arvo = "5DH1XTTYRWJo2SeYaVtyTcf2mKHExXQb48bUCoX99vPf"
 
