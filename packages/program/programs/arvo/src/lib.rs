@@ -48,18 +48,6 @@ pub mod arvo {
         remove_user::handler(ctx, user)
     }
 
-    pub fn update_authority(ctx: Context<UpdateAuthority>) -> Result<()> {
-        update_authority::handler(ctx)
-    }
-
-    pub fn update_fee(ctx: Context<UpdateFee>) -> Result<()> {
-        update_fee::handler(ctx)
-    }
-
-    pub fn update_metadata(ctx: Context<UpdateMetadata>) -> Result<()> {
-        update_metadata::handler(ctx)
-    }
-
     pub fn update_rate(ctx: Context<UpdateRate>, rate: i16) -> Result<()> {
         update_rate::handler(ctx, rate)
     }

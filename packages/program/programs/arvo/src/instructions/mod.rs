@@ -19,15 +19,6 @@ pub use redeem::*;
 pub mod remove_user;
 pub use remove_user::*;
 
-pub mod update_authority;
-pub use update_authority::*;
-
-pub mod update_fee;
-pub use update_fee::*;
-
-pub mod update_metadata;
-pub use update_metadata::*;
-
 pub mod update_rate;
 pub use update_rate::*;
 
