@@ -44,8 +44,8 @@ pub mod arvo {
         redeem::handler(ctx)
     }
 
-    pub fn remove_user(ctx: Context<RemoveUser>) -> Result<()> {
-        remove_user::handler(ctx)
+    pub fn remove_user(ctx: Context<RemoveUser>, user: Pubkey) -> Result<()> {
+        remove_user::handler(ctx, user)
     }
 
     pub fn update_authority(ctx: Context<UpdateAuthority>) -> Result<()> {
