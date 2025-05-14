@@ -10,6 +10,7 @@
     "TrimTrailingWhitespace": false
   },
   "Exclude": [
+    "README.md",
     "package.json",
     "pnpm-lock.yaml",
     "component.hbs",

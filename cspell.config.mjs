@@ -17,6 +17,7 @@ export default {
     "Xargo.toml",
   ],
   words: [
+    "turborepo",
     "commitlint",
     "lefthook",
     "syncpack",
