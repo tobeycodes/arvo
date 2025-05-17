@@ -2,8 +2,8 @@
   "name": "@arvo/config-tailwind",
   "version": "0.0.0",
   "dependencies": {
-    "tailwindcss": "4.1.6",
-    "tw-animate-css": "1.2.9"
+    "tailwindcss": "4.1.7",
+    "tw-animate-css": "1.3.0"
   },
   "exports": {
     "./app.css": "./app.css"
